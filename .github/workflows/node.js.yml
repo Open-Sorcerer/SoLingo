@@ -28,7 +28,7 @@ jobs:
         cache: 'npm'
     - run: cd app
     - run: npm i --legacy-peer-deps
-    - run: npm ci
+    - run: npm ci --legacy-peer-deps
     - run: touch .env.local
 #    - run: echo THREEJS_SCENE_PROVIDER=${{ secrets.THREEJS_SCENE_PROVIDER }} >> .env.local
     - run: npm run build
