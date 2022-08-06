@@ -17,14 +17,9 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
       <Head>
         <title>Solana Scaffold Lite</title>
       </Head>
-
-            <div className="h-screen">
-              <SplineObj
-                scene={
-                  "./scene.splinecode"
-                }
-              />
-            </div>
+      <div className="h-screen">
+        <SplineObj scene={"./scene.splinecode"} />
+      </div>
       <ContextProvider>
         <div className="flex flex-col h-screen w-screen absolute top-0 left-0 z-1000">
           <Notifications />
