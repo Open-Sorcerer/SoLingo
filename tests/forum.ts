@@ -230,4 +230,26 @@ describe("forum", () => {
         const dateCreated = getDate(reply.dateCreated.toNumber());
         console.log(dateCreated);
     })
+
+    async function getReplyPDA(questionNum: number, replyNum: number,) {
+        const [replyPDA, grant_bump] = await anchor.web3.PublicKey.findProgramAddress(
+            [
+                encode("reply"),
+                toBytesInt32(replyNum),
+                toBytesInt32(questionNum),
+            ],
+            program.programId
+        );
+
+        return replyPDA;
+    }
+
+    it('should get reply for a specific question', async () => {
+
+        // gets address for 0th reply for 2nd question
+        const replyPDA = await getReplyPDA(2, 0)
+        const reply = await program.account.reply.fetch(replyPDA);
+
+        expect(reply.description).to.eql(description);
+    });
 });
