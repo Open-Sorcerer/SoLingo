@@ -33,4 +33,8 @@ pub mod so_lingo {
     pub fn upvote_reply(ctx: Context<UpVoteReply>) -> Result<()> {
         instructions::upvote_reply(ctx)
     }
+
+    pub fn down_vote_reply(ctx: Context<DownVoteReply>) -> Result<()> {
+        instructions::down_vote_reply(ctx)
+    }
 }
