@@ -28,7 +28,8 @@ jobs:
           yarn build
           yarn export
           touch ./out/.nojekyll
-          uses: JamesIves/github-pages-deploy-action@4.1.1
-          with:
-            branch: gh-pages
-            folder: out
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@4.1.1
+        with:
+          branch: gh-pages
+          folder: ./app/out
