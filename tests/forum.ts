@@ -12,6 +12,13 @@ const toBytesInt32 = (num: number): Buffer => {
     return Buffer.from(arr);
 };
 
+function getDate(timeStamp: number): string {
+    const date = new Date(timeStamp * 1000);
+
+    // convert the above date into human-readable eg. 8/06/2022
+    return date.toLocaleDateString("en-US").toString();
+}
+
 describe("forum", () => {
     // Configure the client to use the local cluster.
     anchor.setProvider(anchor.AnchorProvider.env());
@@ -21,8 +28,17 @@ describe("forum", () => {
     const programWallet = (program.provider as anchor.AnchorProvider).wallet;
 
     let programInfoPDA: PublicKey;
-    let grantPDA: PublicKey;
+    let questionPDA: PublicKey;
+    let replyPDA: PublicKey;
     let author: Keypair;
+
+    let programInfo = null;
+    let question = null;
+
+    // test data
+    const title = "title";
+    const description = "description";
+    const tags = "tags";
 
     before(async () => {
         const [newProgramInfoPDA, program_info_bump] = await anchor.web3.PublicKey.findProgramAddress(
@@ -36,25 +52,48 @@ describe("forum", () => {
 
         // initializes the program info
         await initProgramInfo()
-
     })
 
     beforeEach(async () => {
         // runs before each test, updates the grant PDA and author keypair
-        const programInfo = await program.account.questionProgramInfo.fetch(programInfoPDA)
+        programInfo = await program.account.questionProgramInfo.fetch(programInfoPDA)
 
-        const [newGrantPDA, grant_bump] = await anchor.web3.PublicKey.findProgramAddress(
+        const [newQuestionPDA, question_bump] = await anchor.web3.PublicKey.findProgramAddress(
             [
-                encode("grant"),
+                encode("question"),
                 toBytesInt32(programInfo.questionsCount),
             ],
             program.programId
         );
 
-        grantPDA = newGrantPDA;
-
+        questionPDA = newQuestionPDA;
         author = await generateFundedKeypair();
+
+        question = await postQuestion(author, title)
+
+        const [newReplyPDA, reply_bump] = await anchor.web3.PublicKey.findProgramAddress(
+            [
+                encode("reply"),
+                toBytesInt32(question.repliesCount),
+                toBytesInt32(programInfo.questionsCount),
+            ],
+            program.programId
+        );
+
+        replyPDA = newReplyPDA;
     });
+
+    async function updateQuestionPDA() {
+        const [newQuestionPDA, question_bump] = await anchor.web3.PublicKey.findProgramAddress(
+            [
+                encode("question"),
+                toBytesInt32(programInfo.questionsCount),
+            ],
+            program.programId
+        );
+
+        questionPDA = newQuestionPDA;
+    }
 
     async function generateFundedKeypair(): Promise<anchor.web3.Keypair> {
         const newKeypair = anchor.web3.Keypair.generate();
@@ -85,12 +124,46 @@ describe("forum", () => {
         return await program.account.questionProgramInfo.fetch(programInfoPDA);
     }
 
-    it("Initializes Grant Program Info!", async () => {
+    it("should initialize Grant Program Info!", async () => {
 
         const programInfo = await program.account.questionProgramInfo.fetch(programInfoPDA);
 
         expect(programInfo.author).to.eql(programWallet.publicKey);
-        expect(programInfo.questionsCount).to.eql(0);
+        expect(programInfo.questionsCount).to.eql(1);
 
     });
+
+    async function postQuestion(author: Keypair, title: string) {
+        await program.methods
+            .postQuestion(title, description, tags)
+            .accounts({
+                author: author.publicKey,
+                question: questionPDA,
+                programInfo: programInfoPDA,
+            })
+            .signers([author])
+            .rpc();
+
+        return program.account.question.fetch(questionPDA);
+    }
+
+    it("should post a question", async () => {
+
+        const question = await program.account.question.fetch(questionPDA);
+
+        expect(question.author).to.eql(author.publicKey);
+        expect(question.title).to.eql(title);
+        expect(question.description).to.eql(description);
+        expect(question.tags).to.eql(tags);
+        expect(question.upVotes).to.eql(0);
+        expect(question.downVotes).to.eql(0);
+        expect(question.repliesCount).to.eql(0);
+        expect(question.isAnswered).to.eql(false);
+        expect(question.questionNum).to.eql(1);
+        expect(question.dateCreated);
+
+        // log the date created
+        const dateCreated = getDate(question.dateCreated.toNumber());
+        console.log(dateCreated);
+    })
 });
