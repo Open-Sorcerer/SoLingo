@@ -199,4 +199,35 @@ describe("forum", () => {
         const dateCreated = getDate(reply.dateCreated.toNumber());
         console.log(dateCreated);
     })
+
+    it("should post a reply to a specific question", async () => {
+
+        console.log(question.questionNum);
+        const questionNum = question.questionNum
+
+        // creating PDA for specific question number
+        const [replyPDA, reply_bump] = await anchor.web3.PublicKey.findProgramAddress(
+            [
+                encode("reply"),
+                toBytesInt32(question.repliesCount),
+                toBytesInt32(questionNum),
+            ],
+            program.programId
+        );
+
+        const reply = await postReply(author, replyPDA, description);
+
+        expect(reply.author).to.eql(author.publicKey);
+        expect(reply.description).to.eql(description);
+        expect(reply.upVotes).to.eql(0);
+        expect(reply.downVotes).to.eql(0);
+        expect(reply.correctAnswer).to.eql(false);
+        expect(reply.questionNum).to.eql(questionNum);
+        expect(reply.replyNum).to.eql(0);
+        expect(reply.dateCreated);
+
+        // log the date created
+        const dateCreated = getDate(reply.dateCreated.toNumber());
+        console.log(dateCreated);
+    })
 });
