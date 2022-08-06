@@ -29,4 +29,8 @@ pub mod so_lingo {
     pub fn down_vote_question(ctx: Context<DownVoteQuestion>) -> Result<()> {
         instructions::down_vote_question(ctx)
     }
+
+    pub fn upvote_reply(ctx: Context<UpVoteReply>) -> Result<()> {
+        instructions::upvote_reply(ctx)
+    }
 }

@@ -29,6 +29,10 @@ impl Reply {
         }
     }
 
+    pub fn reply_num(&self) -> u32 {
+        self.reply_num
+    }
+
     pub fn make_correct_question(&mut self) {
         self.correct_answer = true;
     }
