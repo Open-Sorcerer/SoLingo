@@ -21,10 +21,9 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: "16"
-      - run: cd app
+      - working-directory: ./app
       - run: yarn install
-      - name: Build
-        run: yarn build
+      - run: yarn build
       - run: yarn export
       - run: touch ./out/.nojekyll
       - name: Deploy 🚀
