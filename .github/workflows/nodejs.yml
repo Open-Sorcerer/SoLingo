@@ -13,7 +13,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - run: cd app
       - uses: actions/checkout@v2
       - uses: actions/cache@v2
         with:
@@ -22,6 +21,7 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: "16"
+      - run: cd app
       - run: yarn install
       - name: Build
         run: yarn build
