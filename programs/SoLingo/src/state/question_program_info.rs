@@ -10,7 +10,7 @@ pub struct QuestionProgramInfo {
 }
 
 impl QuestionProgramInfo {
-    pub const MAXIMUM_SPACE: usize = 1 + 8;
+    pub const MAXIMUM_SPACE: usize = 32 + 1 + 8;
 
     pub fn new(author: Pubkey, bump: u8, questions_count: u32) -> Self {
         QuestionProgramInfo {
