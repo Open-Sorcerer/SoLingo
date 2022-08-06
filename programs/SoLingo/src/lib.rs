@@ -21,4 +21,8 @@ pub mod so_lingo {
     pub fn post_reply(ctx: Context<PostReply>, description: String) -> Result<()> {
         instructions::post_reply(ctx, description)
     }
+
+    pub fn upvote_question(ctx: Context<UpVoteQuestion>) -> Result<()> {
+        instructions::upvote_question(ctx)
+    }
 }
