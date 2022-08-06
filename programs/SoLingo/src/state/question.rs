@@ -20,13 +20,14 @@ pub struct Question {
 impl Question {
     pub const MAXIMUM_SPACE: usize = 32 + (4 + (100 * 4)) + (4 + (200 * 4)) + 8 + 8 + (4 + (50 * 4)) + 8 + 16 + 1 + 8;
 
-    pub fn new(author: Pubkey, title: String, description: String, tags: String, question_num: u32) -> Self {
+    pub fn new(author: Pubkey, title: String, description: String, tags: String, question_num: u32, date_created: i64) -> Self {
         Question {
             author,
             title,
             description,
             tags,
             question_num,
+            date_created,
             is_answered: false,
             ..Default::default() // rest of the fields are initialized to default values
         }

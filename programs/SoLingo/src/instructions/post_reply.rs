@@ -9,7 +9,11 @@ pub struct PostReply<'info> {
     #[account(
     init,
     payer = author,
-    seeds = [b"reply", question.replies_count().to_be_bytes().as_ref()],
+    seeds = [
+        b"reply",
+        question.replies_count().to_be_bytes().as_ref(),
+        question.question_num().to_be_bytes().as_ref()
+    ],
     bump,
     space = 8 + Reply::MAXIMUM_SPACE
     )]
@@ -35,10 +39,13 @@ pub fn post_reply(ctx: Context<PostReply>, description: String) -> Result<()> {
         return Err(ReplyErrors::DescriptionTooLong.into());
     }
 
+    let clock: Clock = Clock::get().unwrap();
+
     ctx.accounts.reply.set_inner(Reply::new(
         ctx.accounts.author.key(),
         description,
         ctx.accounts.question.question_num(),
+        clock.unix_timestamp,
     ));
 
     // Increment the number of replies by one

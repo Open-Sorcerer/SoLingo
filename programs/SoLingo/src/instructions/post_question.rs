@@ -37,12 +37,15 @@ pub fn post_question(ctx: Context<PostQuestion>, title: String, description: Str
         return Err(QuestionErrors::DescriptionTooLong.into());
     }
 
+    let clock: Clock = Clock::get().unwrap();
+
     ctx.accounts.question.set_inner(Question::new(
         ctx.accounts.author.key(),
         title,
         description,
         tags,
         ctx.accounts.program_info.questions_count(),
+        clock.unix_timestamp,
     ));
 
     // Increment the number of questions by one

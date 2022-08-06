@@ -166,4 +166,37 @@ describe("forum", () => {
         const dateCreated = getDate(question.dateCreated.toNumber());
         console.log(dateCreated);
     })
+
+    async function postReply(author: Keypair, replyPDA: PublicKey, description: string) {
+        await program.methods
+            .postReply(description)
+            .accounts({
+                author: author.publicKey,
+                reply: replyPDA,
+                question: questionPDA,
+                programInfo: programInfoPDA,
+            })
+            .signers([author])
+            .rpc();
+
+        return program.account.reply.fetch(replyPDA);
+    }
+
+    it("should post a reply", async () => {
+
+        const reply = await postReply(author, replyPDA, description);
+
+        expect(reply.author).to.eql(author.publicKey);
+        expect(reply.description).to.eql(description);
+        expect(reply.upVotes).to.eql(0);
+        expect(reply.downVotes).to.eql(0);
+        expect(reply.correctAnswer).to.eql(false);
+        expect(reply.questionNum).to.eql(2);
+        expect(reply.replyNum).to.eql(0);
+        expect(reply.dateCreated);
+
+        // log the date created
+        const dateCreated = getDate(reply.dateCreated.toNumber());
+        console.log(dateCreated);
+    })
 });

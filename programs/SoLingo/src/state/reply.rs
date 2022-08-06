@@ -18,11 +18,12 @@ pub struct Reply {
 impl Reply {
     pub const MAXIMUM_SPACE: usize = 32 + (4 + (200 * 4)) + 8 + 8 + 16 + 1 + 8 + 8;
 
-    pub fn new(author: Pubkey, description: String, question_num: u32) -> Self {
+    pub fn new(author: Pubkey, description: String, question_num: u32, date_created: i64) -> Self {
         Reply {
             author,
             description,
             question_num,
+            date_created,
             correct_answer: false,
             ..Default::default() // rest of the fields are initialized to default values
         }
