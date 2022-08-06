@@ -2,12 +2,12 @@ use anchor_lang::prelude::*;
 use crate::state::{Question, QuestionProgramInfo};
 
 /**
- * UpVoteQuestion
+ * DownVoteQuestion
  *
- * This instruction allows a user to upvote a question.
+ * This instruction allows a user to down vote a question.
  */
 #[derive(Accounts)]
-pub struct UpVoteQuestion<'info> {
+pub struct DownVoteQuestion<'info> {
     #[account(mut)]
     author: Signer<'info>,
 
@@ -24,8 +24,8 @@ pub struct UpVoteQuestion<'info> {
     system_program: Program<'info, System>,
 }
 
-pub fn upvote_question(ctx: Context<UpVoteQuestion>) -> Result<()> {
-    ctx.accounts.question.increment_up_votes();
+pub fn down_vote_question(ctx: Context<DownVoteQuestion>) -> Result<()> {
+    ctx.accounts.question.increment_down_votes();
 
     Ok(())
 }
