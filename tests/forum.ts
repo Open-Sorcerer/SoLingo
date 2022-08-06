@@ -24,38 +24,37 @@ describe("forum", () => {
     let grantPDA: PublicKey;
     let author: Keypair;
 
-    // before(async () => {
-    //     const [newProgramInfoPDA, program_info_bump] = await anchor.web3.PublicKey.findProgramAddress(
-    //         [
-    //             encode("question_program_info"),
-    //         ],
-    //         program.programId
-    //     );
-    //
-    //     programInfoPDA = newProgramInfoPDA;
-    //
-    //     console.log("kiok")
-    //     // initializes the program info
-    //     await initProgramInfo()
-    //
-    // })
+    before(async () => {
+        const [newProgramInfoPDA, program_info_bump] = await anchor.web3.PublicKey.findProgramAddress(
+            [
+                encode("question_program_info"),
+            ],
+            program.programId
+        );
 
-    // beforeEach(async () => {
-    //     // runs before each test, updates the grant PDA and author keypair
-    //     const programInfo = await program.account.questionProgramInfo.fetch(programInfoPDA)
-    //
-    //     // const [newGrantPDA, grant_bump] = await anchor.web3.PublicKey.findProgramAddress(
-    //     //     [
-    //     //         encode("grant"),
-    //     //         toBytesInt32(programInfo.questionsCount),
-    //     //     ],
-    //     //     program.programId
-    //     // );
-    //     //
-    //     // grantPDA = newGrantPDA;
-    //
-    //     // author = await generateFundedKeypair();
-    // });
+        programInfoPDA = newProgramInfoPDA;
+
+        // initializes the program info
+        await initProgramInfo()
+
+    })
+
+    beforeEach(async () => {
+        // runs before each test, updates the grant PDA and author keypair
+        const programInfo = await program.account.questionProgramInfo.fetch(programInfoPDA)
+
+        const [newGrantPDA, grant_bump] = await anchor.web3.PublicKey.findProgramAddress(
+            [
+                encode("grant"),
+                toBytesInt32(programInfo.questionsCount),
+            ],
+            program.programId
+        );
+
+        grantPDA = newGrantPDA;
+
+        author = await generateFundedKeypair();
+    });
 
     async function generateFundedKeypair(): Promise<anchor.web3.Keypair> {
         const newKeypair = anchor.web3.Keypair.generate();
@@ -88,22 +87,10 @@ describe("forum", () => {
 
     it("Initializes Grant Program Info!", async () => {
 
-        const [newProgramInfoPDA, program_info_bump] = await anchor.web3.PublicKey.findProgramAddress(
-            [
-                encode("question_program_info"),
-            ],
-            program.programId
-        );
+        const programInfo = await program.account.questionProgramInfo.fetch(programInfoPDA);
 
-        programInfoPDA = newProgramInfoPDA;
-        console.log(programInfoPDA)
-
-        console.log(await initProgramInfo())
-
-        // const programInfo = await program.account.questionProgramInfo.fetch(programInfoPDA);
-        //
-        // expect(programInfo.author).to.eql(programWallet.publicKey);
-        // expect(programInfo.questionsCount).to.eql(0);
+        expect(programInfo.author).to.eql(programWallet.publicKey);
+        expect(programInfo.questionsCount).to.eql(0);
 
     });
 });

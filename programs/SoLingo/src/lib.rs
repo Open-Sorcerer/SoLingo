@@ -14,7 +14,7 @@ pub mod so_lingo {
         initialize(ctx)
     }
 
-    pub fn post_question(ctx: Context<PostQuestion>, title: String, description: String,tags: String) -> Result<()> {
+    pub fn post_question(ctx: Context<PostQuestion>, title: String, description: String, tags: String) -> Result<()> {
         instructions::post_question(ctx, title, description, tags)
     }
 
