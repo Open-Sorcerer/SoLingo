@@ -61,6 +61,9 @@ export const AppBar: FC = props => {
             <Link href="/quest">
               <a className="btn btn-ghost btn-sm rounded-btn">Quest</a>
             </Link>
+            <Link href="/forum">
+              <a className="btn btn-ghost btn-sm rounded-btn">Forum</a>
+            </Link>
           </div>
         </div>
 
