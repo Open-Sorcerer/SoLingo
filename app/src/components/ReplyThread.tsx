@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Icon } from "@iconify/react";
 
-const NewThread = (props: { reply: any }) => {
+const ReplyThread = (props: { reply: any }) => {
   const { reply } = props;
   const [isInputShown, setIsInputShown] = useState(false);
   const [isUpVoted, setIsUpVoted] = useState(false);
@@ -43,7 +43,11 @@ const NewThread = (props: { reply: any }) => {
           className="btn btn-square btn-ghost text-right"
           onClick={() => setIsInputShown(!isInputShown)}
         >
-          <Icon className="text-cyan-500 w-6 h-6" icon="bi:reply-all" />
+          {isInputShown ? (
+            <Icon className="text-cyan-500 w-6 h-6" icon="bi:reply-all-fill" />
+          ) : (
+            <Icon className="text-cyan-500 w-6 h-6" icon="bi:reply-all" />
+          )}
         </div>
       </div>
       <form
@@ -68,4 +72,4 @@ const NewThread = (props: { reply: any }) => {
   );
 };
 
-export default NewThread;
+export default ReplyThread;

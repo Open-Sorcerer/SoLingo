@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import { useState } from "react";
 import forumArray from "./api/forumDat";
-import NewThread from '../components/NewThread';
+import ReplyThread from '../components/ReplyThread';
 const Quests: NextPage = (props) => {
   const [page, setPage] = useState(1);
   const [isInputShown, setIsInputShown] = useState(false);
@@ -24,7 +24,7 @@ const Quests: NextPage = (props) => {
                 {elem.question}
                 <div className="w-full flex flex-col justify-center items-start border border-gray-300 pl-24">
                   {elem.replies.map((reply, i) => (
-                    <NewThread key={i} reply={reply} />
+                    <ReplyThread key={i} reply={reply} />
                   ))}
                 </div>
               </div>
