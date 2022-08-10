@@ -1,8 +1,8 @@
 const qBank = [
     {
       question:
-        "how build the app ?",
-      answers: ["vinayak", "sarthak", "somil", "devesh"],
+        "ERROR EPERM BLEH BLEH BLEH BLEH BLEH BLEH BLEH BLEH Lorem Ipsum Dolor Sit Amet Consectetur Adipiscing Elit Mattis Eros Vivamus Euismod Nisl Quisque BLEH BLEH BLEH BLEH",
+      answers: ["vinayak kjashfkjdhsfkjhdkjshfkjdhsfkjhdskfjh", "sarthak lkdfjklsjfkldjasfkl", "somil", "devesh"],
       correct: "vinayak",
       questionId: "099099"
     },

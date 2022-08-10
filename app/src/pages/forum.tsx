@@ -9,7 +9,7 @@ const Quests: NextPage = (props) => {
   return (
     <div>
       <Head>
-        <title>Solana Scaffold</title>
+        <title>Forum</title>
         <meta name="description" content="Quest Topix" />
       </Head>
       <div className="flex justify-center h-full w-full">
