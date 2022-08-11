@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 const Spline = dynamic(() => import("@splinetool/react-spline"), {
   ssr: false,
 });
-const SplineObj = (props) => {
+const SplineObj = (props: { scene: string; }) => {
   return (
       <Spline className="absolute top-0 right-0 z-1" scene={props.scene} />
   );
