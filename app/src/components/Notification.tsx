@@ -7,7 +7,6 @@ import {
 import { XIcon } from '@heroicons/react/solid'
 import useNotificationStore from '../stores/useNotificationStore'
 import { useConnection } from '@solana/wallet-adapter-react';
-import { getExplorerUrl } from '../utils/explorer'
 import { useNetworkConfiguration } from 'contexts/NetworkConfigurationProvider';
 
 const NotificationList = () => {
@@ -45,7 +44,8 @@ const NotificationList = () => {
   );
 }
 
-const Notification = ({ type, message, description, txid, onHide }) => {
+const Notification = (props: { type: any; message: any; description: any; txid: any; onHide: any; }) => {
+  const { type, message, description, txid, onHide } = props;
   const { connection } = useConnection();
   const { networkConfiguration } = useNetworkConfiguration();
 
