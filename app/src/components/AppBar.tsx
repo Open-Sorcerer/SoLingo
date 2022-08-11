@@ -12,7 +12,7 @@ export const AppBar: FC = props => {
     <div>
 
       {/* NavBar / Header */}
-      <div className="navbar flex flex-row md:mb-2 shadow-lg bg-neutral text-neutral-content">
+      <div className="navbar flex flex-row md:mb-2 shadow-lg bg-black bg-opacity-70 backdrop-blur-xl rounded drop-shadow-lg text-neutral-content">
         <div className="navbar-start">
           <label htmlFor="my-drawer" className="btn btn-square btn-ghost">
 
@@ -57,6 +57,12 @@ export const AppBar: FC = props => {
             </Link>
             <Link href="/basics">
               <a className="btn btn-ghost btn-sm rounded-btn">Basics</a>
+            </Link>
+            <Link href="/quest">
+              <a className="btn btn-ghost btn-sm rounded-btn">Quest</a>
+            </Link>
+            <Link href="/forum">
+              <a className="btn btn-ghost btn-sm rounded-btn">Forum</a>
             </Link>
           </div>
         </div>

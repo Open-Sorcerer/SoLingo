@@ -16,8 +16,8 @@ module.exports = {
       {
         'solana': {                          /* your theme name */
           fontFamily: {
-            display: ['PT Mono, monospace'],
-            body: ['Inter, sans-serif'],
+            display: ['Raleway', 'PT Mono, monospace'],
+            body: ['Raleway', 'Inter, sans-serif'],
           },
           'primary': '#2a2a2a',           /* Primary color */
           'primary-focus': '#9945FF',     /* Primary color - focused */

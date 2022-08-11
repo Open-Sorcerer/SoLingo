@@ -7,6 +7,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "export": "next export",
     "lint": "next lint"
   },
   "dependencies": {
@@ -16,6 +17,8 @@
     "@solana/wallet-adapter-react-ui": "^0.9.5",
     "@solana/wallet-adapter-wallets": "^0.15.3",
     "@solana/web3.js": "^1.31.0",
+    "@splinetool/react-spline": "^2.2.1",
+    "@splinetool/runtime": "^0.9.93",
     "@tailwindcss/typography": "^0.5.0",
     "daisyui": "^1.24.3",
     "immer": "^9.0.12",
