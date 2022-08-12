@@ -68,6 +68,15 @@ const ReplyThread = (props: { reply: any }) => {
           />
         </div>
       </form>
+      {reply.replies ? (
+        <div className="w-full flex flex-col justify-center items-start border border-gray-300 pl-24">
+          {reply.replies.map((elem: any, i: React.Key) => (
+            <ReplyThread key={i} reply={elem} />
+          ))}
+        </div>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };
