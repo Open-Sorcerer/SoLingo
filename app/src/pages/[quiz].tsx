@@ -5,7 +5,7 @@ import Head from "next/head";
 import { useState } from "react";
 import quizJson from "./api/quiz.json";
 
-const Qu: NextPage = (props) => {
+const Quests: NextPage = (props) => {
   //Takes query from router and uses it call specific question json.
   const router = useRouter()
   let { quiz } = router.query;
