@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import { useState } from "react";
 import quizJson from "./api/quiz.json";
-
+import { Icon } from "@iconify/react";
 const Quests: NextPage = (props) => {
   //Takes query from router and uses it call specific question json.
   const router = useRouter();
@@ -67,27 +67,70 @@ const Quests: NextPage = (props) => {
             <div className="text-xl font-bold mb-3">Quest</div>
             {/* If showScore is true then we will display result or else we will display questions */}
             {showScore ? (
-              <>
+              <div className="flex flex-col justify-center items-center gap-10 p-10">
                 <h1 className="text-3xl font-semibold text-center text-white">
-                  You scored {score} out of {questions.length}
+                  You scored {score}.0 / {questions.length}.0
                 </h1>
-                {/* If the score is less then 8 then you can't upload the result */}
+                <div className="flex flex-row justify-center items-center gap-10">
+                  <Link href="/quests">
+                    <a className="w-full bg-indigo-600 rounded-lg relative flex justify-center items-center">
+                      <img
+                        alt="retry"
+                        src="https://source.unsplash.com/random/?reset"
+                        className="h-48 w-full rounded-lg"
+                        style={{ filter: "brightness(40%)" }}
+                      />
+                      <p className="absolute">
+                        <div className="text-white text-2xl font-bold ">
+                          Retry
+                        </div>
+                        <Icon
+                          className="text-cyan-500 w-16 h-16"
+                          icon="bx:reset"
+                        />
+                      </p>
+                    </a>
+                  </Link>
+                  {/* If the score is less then 8 then you can't upload the result */}
+                  {score < 8 ? (
+                    <></>
+                  ) : (
+                    <button
+                      onClick={handlePrevious}
+                      className="w-full bg-indigo-600 rounded-lg relative flex justify-center items-center"
+                    >
+                      <img
+                        alt="upload"
+                        src="https://source.unsplash.com/random/?success"
+                        className="h-48 w-full rounded-lg"
+                        style={{ filter: "brightness(40%)" }}
+                      />
+                      <p className="absolute">
+                        <div className="text-white text-2xl font-bold ">
+                          Upload
+                        </div>
+                        <Icon
+                          className="text-cyan-500 w-16 h-16"
+                          icon="akar-icons:cloud-upload"
+                        />
+                      </p>
+                    </button>
+                  )}
+                </div>
                 {score < 8 ? (
-                  <h1 className="text-3xl font-semibold text-center text-white">
-                    You didn't pass this round.
-                  </h1>
+                  <>
+                    <h1 className="text-3xl font-semibold text-center text-white">
+                      You failed to clear this round. Better luck next time!
+                    </h1>
+                  </>
                 ) : (
-                  <button
-                    onClick={handlePrevious}
-                    className="w-[49%] py-3 bg-indigo-600 rounded-lg"
-                  >
-                    Upload
-                  </button>
+                  <>
+                    <h1 className="text-3xl font-semibold text-center text-white">
+                      You cleared this round successfully !
+                    </h1>
+                  </>
                 )}
-                <Link href="/quest">
-                  <a className="w-[49%] py-3 bg-indigo-600 rounded-lg">Retry</a>
-                </Link>
-              </>
+              </div>
             ) : (
               <>
                 <div className="flex flex-col items-start w-full">
@@ -106,6 +149,7 @@ const Quests: NextPage = (props) => {
                           onClick={(e) => handleAnswerOption(answer.answer)}
                         >
                           <input
+                            title="Answer"
                             type="radio"
                             name={answer.answer}
                             value={answer.answer}
