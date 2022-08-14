@@ -15,10 +15,12 @@ const Quests: NextPage = (props) => {
       <div className="flex justify-center h-full w-full">
         <div className="flex w-full h-full justify-evenly bg-black bg-opacity-50 backdrop-blur-xl rounded drop-shadow-lg text-white m-5 rounded">
           <div className="flex flex-col justify-center items-center">
-            <div className="text-xl font-bold">Forum</div>
+            <h1 className="text-center text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-tr from-[#9945FF] to-[#14F195] p-5">
+              Forum
+            </h1>
             {forumArray.map((elem, index) => (
               <div className="w-full flex flex-col justify-center items-start border border-gray-300">
-                  <ReplyThread key={index} reply={elem} />
+                <ReplyThread key={index} reply={elem} />
               </div>
             ))}
           </div>

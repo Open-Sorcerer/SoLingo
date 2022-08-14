@@ -12,10 +12,12 @@ const Quests: NextPage = () => {
       <div className="flex justify-center h-full w-full">
         <div className="flex w-3/4 h-full justify-evenly bg-black bg-opacity-50 backdrop-blur-xl rounded-lg drop-shadow-lg text-white m-5 rounded">
           <div className="flex flex-col justify-center items-center p-5">
-            <div className="text-xl font-bold mb-10">Quest</div>
+            <h1 className="text-center text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-tr from-[#9945FF] to-[#14F195] pb-10">
+              Quests
+            </h1>
             <div className="flex gap-5 items-start w-full">
               <Link href="/1">
-                <a className="w-[49%] bg-indigo-600 rounded-lg relative">
+                <a className="w-full rounded-lg relative flex justify-center items-center">
                   <img
                     alt="1"
                     src="https://source.unsplash.com/random/?one"
@@ -28,7 +30,7 @@ const Quests: NextPage = () => {
                 </a>
               </Link>
               <Link href="/2">
-                <a className="w-[49%] bg-indigo-600 rounded-lg relative">
+                <a className="w-full rounded-lg relative flex justify-center items-center">
                   <img
                     alt="1"
                     src="https://source.unsplash.com/random/?two"
@@ -41,7 +43,7 @@ const Quests: NextPage = () => {
                 </a>
               </Link>
               <Link href="/3">
-                <a className="w-[49%] bg-indigo-600 rounded-lg relative">
+                <a className="w-full rounded-lg relative flex justify-center items-center">
                   <img
                     alt="1"
                     src="https://source.unsplash.com/random/?three"
@@ -53,7 +55,7 @@ const Quests: NextPage = () => {
                   </p>
                 </a>
               </Link>
-              <a className="w-[49%] bg-indigo-600 rounded-lg relative">
+              <a className="w-full rounded-lg relative flex justify-center items-center">
                 <img
                   alt="1"
                   src="https://source.unsplash.com/random/?comingsoon"

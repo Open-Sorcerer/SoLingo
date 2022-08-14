@@ -64,7 +64,9 @@ const Quests: NextPage = (props) => {
       <div className="flex justify-center h-full w-full">
         <div className="flex w-3/4 h-full justify-evenly bg-black bg-opacity-50 backdrop-blur-xl rounded-lg drop-shadow-lg text-white m-5 rounded">
           <div className="flex flex-col justify-center items-center p-3">
-            <div className="text-xl font-bold mb-3">Quest</div>
+            <h1 className="text-center text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-tr from-[#9945FF] to-[#14F195]">
+              Quiz Level {quiz}
+            </h1>
             {/* If showScore is true then we will display result or else we will display questions */}
             {showScore ? (
               <div className="flex flex-col justify-center items-center gap-10 p-10">
