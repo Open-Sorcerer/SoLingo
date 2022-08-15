@@ -34,6 +34,7 @@ describe("forum", () => {
 
     let programInfo = null;
     let question = null;
+    let author_pda: PublicKey;
 
     // test data
     const title = "title";
@@ -200,6 +201,64 @@ describe("forum", () => {
         const dateCreated = getDate(question.dateCreated.toNumber());
         console.log(dateCreated);
     })
+
+    it("should initialize User stats!", async () => {
+
+        const author = await generateFundedKeypair();
+
+        author_pda = await getUserStatsPDA(author.publicKey);
+
+        const userStats = await initUserStats(author_pda);
+
+        expect(userStats.author).to.eql(author.publicKey);
+        expect(userStats.level).to.eql(0);
+
+    });
+
+    it("should increase the level", async () => {
+        const userStats = await incrementLevel(author_pda);
+
+        expect(userStats.author).to.eql(author.publicKey);
+        expect(userStats.level).to.eql(1);
+
+    });
+
+    async function initUserStats(userStatsPDA: PublicKey) {
+        await program.methods
+            .initializeUserStats()
+            .accounts({
+                author: programWallet.publicKey,
+                user: userStatsPDA,
+            }).rpc();
+
+        return await program.account.userQuizStats.fetch(userStatsPDA);
+    }
+
+
+    async function getUserStatsPDA(author: PublicKey) {
+        const [userStatsPDA, userStatsBump] = await anchor.web3.PublicKey.findProgramAddress(
+            [
+                encode("user"),
+                author.toBuffer(),
+            ],
+            program.programId
+        );
+        return userStatsPDA;
+    }
+
+
+    async function incrementLevel(userStatsPDA: PublicKey) {
+        await program.methods
+            .incrementLevel()
+            .accounts({
+                author: programWallet.publicKey,
+                userQuizStats: userStatsPDA,
+            }).rpc();
+
+
+        return await program.account.userQuizStats.fetch(userStatsPDA);
+
+    }
 
     // async function postReply(author: Keypair, replyPDA: PublicKey, description: string) {
     //     await program.methods
