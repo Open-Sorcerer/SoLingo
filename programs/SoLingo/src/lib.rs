@@ -4,7 +4,7 @@ use instructions::*;
 pub mod state;
 mod instructions;
 mod errors;
-declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
+declare_id!("3eDAYviWGBPe2MugFvjWekFhnwGJc4S82KTt3azLDeRZ");
 
 #[program]
 pub mod so_lingo {
@@ -26,8 +26,8 @@ pub mod so_lingo {
         instructions::upvote_question(ctx)
     }
 
-    pub fn down_vote_question(ctx: Context<DownVoteQuestion>) -> Result<()> {
-        instructions::down_vote_question(ctx)
+    pub fn downvote_question(ctx: Context<DownVoteQuestion>) -> Result<()> {
+        instructions::downvote_question(ctx)
     }
 
     pub fn upvote_reply(ctx: Context<UpVoteReply>) -> Result<()> {

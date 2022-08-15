@@ -1,13 +1,16 @@
 [features]
 seeds = false
-[programs.localnet]
-so_lingo = "Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS"
+#[programs.localnet]
+#so_lingo = "E47TDUaHeWWFg6129cSNiBRwfSdiqV5QRhxMKuX24WdY"
+
+[programs.devnet]
+so_lingo = "3eDAYviWGBPe2MugFvjWekFhnwGJc4S82KTt3azLDeRZ"
 
 [registry]
 url = "https://anchor.projectserum.com"
 
 [provider]
-cluster = "localnet"
+cluster = "devnet"
 wallet = "/home/thefunnyintrovert/.config/solana/id.json"
 
 [scripts]

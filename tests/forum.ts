@@ -69,18 +69,18 @@ describe("forum", () => {
         questionPDA = newQuestionPDA;
         author = await generateFundedKeypair();
 
-        question = await postQuestion(author, title)
+        // question = await postQuestion(author, title)
 
-        const [newReplyPDA, reply_bump] = await anchor.web3.PublicKey.findProgramAddress(
-            [
-                encode("reply"),
-                toBytesInt32(question.repliesCount),
-                toBytesInt32(programInfo.questionsCount),
-            ],
-            program.programId
-        );
+        // const [newReplyPDA, reply_bump] = await anchor.web3.PublicKey.findProgramAddress(
+        //     [
+        //         encode("reply"),
+        //         toBytesInt32(question.repliesCount),
+        //         toBytesInt32(programInfo.questionsCount),
+        //     ],
+        //     program.programId
+        // );
 
-        replyPDA = newReplyPDA;
+        // replyPDA = newReplyPDA;
     });
 
     async function updateQuestionPDA() {
@@ -121,10 +121,11 @@ describe("forum", () => {
                 programInfo: programInfoPDA,
             }).rpc();
 
+        console.log("program info initialized")
         return await program.account.questionProgramInfo.fetch(programInfoPDA);
     }
 
-    it("should initialize Grant Program Info!", async () => {
+    it("should initialize Question Program Info!", async () => {
 
         const programInfo = await program.account.questionProgramInfo.fetch(programInfoPDA);
 
@@ -144,19 +145,22 @@ describe("forum", () => {
             .signers([author])
             .rpc();
 
+        console.log("question posted")
+
         return program.account.question.fetch(questionPDA);
     }
 
     it("should post a question", async () => {
 
-        const question = await program.account.question.fetch(questionPDA);
+        const question = await postQuestion(author, title)
+
+        // const question = await  program.account.question.fetch(questionPDA);
 
         expect(question.author).to.eql(author.publicKey);
         expect(question.title).to.eql(title);
         expect(question.description).to.eql(description);
         expect(question.tags).to.eql(tags);
         expect(question.upVotes).to.eql(0);
-        expect(question.downVotes).to.eql(0);
         expect(question.repliesCount).to.eql(0);
         expect(question.isAnswered).to.eql(false);
         expect(question.questionNum).to.eql(1);
@@ -167,89 +171,119 @@ describe("forum", () => {
         console.log(dateCreated);
     })
 
-    async function postReply(author: Keypair, replyPDA: PublicKey, description: string) {
+    it("should upvote a question", async () => {
+        let question = await postQuestion(author, title)
+
         await program.methods
-            .postReply(description)
+            .upvoteQuestion()
             .accounts({
                 author: author.publicKey,
-                reply: replyPDA,
                 question: questionPDA,
-                programInfo: programInfoPDA,
             })
             .signers([author])
             .rpc();
 
-        return program.account.reply.fetch(replyPDA);
-    }
 
-    it("should post a reply", async () => {
+        question = await program.account.question.fetch(questionPDA);
 
-        const reply = await postReply(author, replyPDA, description);
-
-        expect(reply.author).to.eql(author.publicKey);
-        expect(reply.description).to.eql(description);
-        expect(reply.upVotes).to.eql(0);
-        expect(reply.downVotes).to.eql(0);
-        expect(reply.correctAnswer).to.eql(false);
-        expect(reply.questionNum).to.eql(2);
-        expect(reply.replyNum).to.eql(0);
-        expect(reply.dateCreated);
+        expect(question.author).to.eql(author.publicKey);
+        expect(question.title).to.eql(title);
+        expect(question.description).to.eql(description);
+        expect(question.tags).to.eql(tags);
+        expect(question.upVotes).to.eql(1);
+        expect(question.repliesCount).to.eql(0);
+        expect(question.isAnswered).to.eql(false);
+        expect(question.questionNum).to.eql(1);
+        expect(question.dateCreated);
 
         // log the date created
-        const dateCreated = getDate(reply.dateCreated.toNumber());
+        const dateCreated = getDate(question.dateCreated.toNumber());
         console.log(dateCreated);
     })
 
-    it("should post a reply to a specific question", async () => {
-
-        console.log(question.questionNum);
-        const questionNum = question.questionNum
-
-        // creating PDA for specific question number
-        const [replyPDA, reply_bump] = await anchor.web3.PublicKey.findProgramAddress(
-            [
-                encode("reply"),
-                toBytesInt32(question.repliesCount),
-                toBytesInt32(questionNum),
-            ],
-            program.programId
-        );
-
-        const reply = await postReply(author, replyPDA, description);
-
-        expect(reply.author).to.eql(author.publicKey);
-        expect(reply.description).to.eql(description);
-        expect(reply.upVotes).to.eql(0);
-        expect(reply.downVotes).to.eql(0);
-        expect(reply.correctAnswer).to.eql(false);
-        expect(reply.questionNum).to.eql(questionNum);
-        expect(reply.replyNum).to.eql(0);
-        expect(reply.dateCreated);
-
-        // log the date created
-        const dateCreated = getDate(reply.dateCreated.toNumber());
-        console.log(dateCreated);
-    })
-
-    async function getReplyPDA(questionNum: number, replyNum: number,) {
-        const [replyPDA, grant_bump] = await anchor.web3.PublicKey.findProgramAddress(
-            [
-                encode("reply"),
-                toBytesInt32(replyNum),
-                toBytesInt32(questionNum),
-            ],
-            program.programId
-        );
-
-        return replyPDA;
-    }
-
-    it('should get reply for a specific question', async () => {
-
-        // gets address for 0th reply for 2nd question
-        const replyPDA = await getReplyPDA(2, 0)
-        const reply = await program.account.reply.fetch(replyPDA);
-
-        expect(reply.description).to.eql(description);
-    });
+    // async function postReply(author: Keypair, replyPDA: PublicKey, description: string) {
+    //     await program.methods
+    //         .postReply(description)
+    //         .accounts({
+    //             author: author.publicKey,
+    //             reply: replyPDA,
+    //             question: questionPDA,
+    //             programInfo: programInfoPDA,
+    //         })
+    //         .signers([author])
+    //         .rpc();
+    //
+    //     return program.account.reply.fetch(replyPDA);
+    // }
+    //
+    // it("should post a reply", async () => {
+    //
+    //     const reply = await postReply(author, replyPDA, description);
+    //
+    //     expect(reply.author).to.eql(author.publicKey);
+    //     expect(reply.description).to.eql(description);
+    //     expect(reply.upVotes).to.eql(0);
+    //     expect(reply.downVotes).to.eql(0);
+    //     expect(reply.correctAnswer).to.eql(false);
+    //     expect(reply.questionNum).to.eql(2);
+    //     expect(reply.replyNum).to.eql(0);
+    //     expect(reply.dateCreated);
+    //
+    //     // log the date created
+    //     const dateCreated = getDate(reply.dateCreated.toNumber());
+    //     console.log(dateCreated);
+    // })
+    //
+    // it("should post a reply to a specific question", async () => {
+    //
+    //     console.log(question.questionNum);
+    //     const questionNum = question.questionNum
+    //
+    //     // creating PDA for specific question number
+    //     const [replyPDA, reply_bump] = await anchor.web3.PublicKey.findProgramAddress(
+    //         [
+    //             encode("reply"),
+    //             toBytesInt32(question.repliesCount),
+    //             toBytesInt32(questionNum),
+    //         ],
+    //         program.programId
+    //     );
+    //
+    //     const reply = await postReply(author, replyPDA, description);
+    //
+    //     expect(reply.author).to.eql(author.publicKey);
+    //     expect(reply.description).to.eql(description);
+    //     expect(reply.upVotes).to.eql(0);
+    //     expect(reply.downVotes).to.eql(0);
+    //     expect(reply.correctAnswer).to.eql(false);
+    //     expect(reply.questionNum).to.eql(questionNum);
+    //     expect(reply.replyNum).to.eql(0);
+    //     expect(reply.dateCreated);
+    //
+    //     // log the date created
+    //     const dateCreated = getDate(reply.dateCreated.toNumber());
+    //     console.log(dateCreated);
+    // })
+    //
+    // async function getReplyPDA(questionNum: number, replyNum: number,) {
+    //     const [replyPDA, reply_bump] = await anchor.web3.PublicKey.findProgramAddress(
+    //         [
+    //             encode("reply"),
+    //             toBytesInt32(replyNum),
+    //             toBytesInt32(questionNum),
+    //         ],
+    //         program.programId
+    //     );
+    //
+    //     return replyPDA;
+    // }
+    //
+    // it('should get reply for a specific question', async () => {
+    //
+    //     // gets address for 0th reply for 2nd question
+    //     const replyPDA = await getReplyPDA(2, 0)
+    //     const reply = await program.account.reply.fetch(replyPDA);
+    //
+    //     expect(reply.description).to.eql(description);
+    // });
 });
