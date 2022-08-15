@@ -1,7 +1,5 @@
 [features]
 seeds = false
-#[programs.localnet]
-#so_lingo = "E47TDUaHeWWFg6129cSNiBRwfSdiqV5QRhxMKuX24WdY"
 
 [programs.devnet]
 so_lingo = "3eDAYviWGBPe2MugFvjWekFhnwGJc4S82KTt3azLDeRZ"

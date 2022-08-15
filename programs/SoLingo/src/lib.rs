@@ -6,8 +6,10 @@ mod instructions;
 mod errors;
 declare_id!("3eDAYviWGBPe2MugFvjWekFhnwGJc4S82KTt3azLDeRZ");
 
+
 #[program]
 pub mod so_lingo {
+    use crate::state::UserQuizStats;
     use super::*;
 
     pub fn initialize_program_info(ctx: Context<Initialize>) -> Result<()> {
@@ -36,5 +38,13 @@ pub mod so_lingo {
 
     pub fn down_vote_reply(ctx: Context<DownVoteReply>) -> Result<()> {
         instructions::down_vote_reply(ctx)
+    }
+
+    pub fn initialize_user_stats(ctx: Context<InitializeUserStats>) -> Result<()> {
+        instructions::initialize_user_stats(ctx)
+    }
+
+    pub fn increment_level(ctx: Context<IncrementLevel>) -> Result<()> {
+        instructions::increment_level(ctx)
     }
 }
