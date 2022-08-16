@@ -28,8 +28,8 @@ const Quests: NextPage = () => {
             <h1 className="text-center text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-tr from-[#9945FF] to-[#14F195] pb-10">
               Quests
             </h1>
-            <h4 className="mt-10 text-xl text-white/60 footer-center">
-              The quiz are based on <a href="https://solanacookbook.com/#contributing">Solana Cookbook</a>. <br/>You have to score 4 and above to pass the levels.
+            <h4 className="mt-10 mb-5 text-xl text-white/60 footer-center">
+              The quiz are based on <a href="https://solanacookbook.com/#contributing" className="font-semibold">Solana Cookbook</a>. <br/>You have to score 4 and above to pass the levels.
             </h4>
             <div className="flex gap-5 items-start w-full">
               <Link href="/1">

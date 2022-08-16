@@ -28,25 +28,29 @@ export const HomeView: FC = ({}) => {
 
   return (
     <div className="flex justify-center h-fit w-full">
-      {/* <div className="flex flex-col w-3/4 h-full justify-start items-center rounded-lg drop-shadow-lg text-white m-5 p-10 gap-5 rounded">
-        <div className="flex w-2/3 justify-evenly items-center">
-          <div
-            className="flex w-fit w-full h-full justify-center items-center m-2 ml-0 space-x-2 border-2 cursor-pointer border-white/20 rounded-xl bg-black/80 text-lg p-10"
-            style={{
-              boxShadow: "0 0.5rem 1.2rem rgb(189 197 209 / 20%)",
-              border: "1px solid #e7eaf3",
-              borderRadius: "0.5rem",
-            }}
-          >
-            A multichain Defi Dashboard which allows you to track your assets on
-            multiple chains. It also allows users to create their own NFTs on
-            Polygon with a very friendly user interface. Any media you hold, a
-            video, an image, an audio file can be converted to an NFT. The gas
-            fees for minting are minimal thanks to the Polygon Network.
-            Currently the minter is on Polygon testnet.
+      <div
+        className="flex flex-row w-1/2 h-full justify-evenly items-center rounded-lg drop-shadow-lg text-white m-5 p-10 gap-5 rounded border-white/20 rounded-xl bg-black/80 text-lg p-10 divide-x"
+        style={{
+          boxShadow: "0 0.5rem 1.2rem rgb(189 197 209 / 20%)",
+          border: "1px solid #e7eaf3",
+          borderRadius: "0.5rem",
+        }}
+      >
+        <div className="flex flex-col w-1/3 justify-evenly items-center">
+          <img src="./wizzie.png" alt="opensorcerer" />
+        </div>
+        <div className="flex flex-col w-2/3 justify-evenly items-center">
+          <h1 className="text-center text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-tr from-[#9945FF] to-[#14F195]">
+            SOLINGO
+          </h1>
+          <div className="flex flex-col w-full h-full justify-center items-center text-lg py-10 pl-10">
+            <p className="font-semibold">
+            Learn to Earn platform on Chain!
+            </p>
+            Educational platforms should be awesome and cool looking like US. Enjoy the platform plus get some cool NFTs to showcase your new-found knowledge.... Go show it off!
           </div>
         </div>
-      </div> */}
+      </div>
     </div>
   );
 };
