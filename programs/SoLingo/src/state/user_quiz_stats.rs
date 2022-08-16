@@ -5,15 +5,17 @@ use anchor_lang::prelude::*;
 #[account]
 #[derive(Default)]
 pub struct UserQuizStats {
+    pub bump: u8, // 1
     pub author: Pubkey, // 32
     level: u32,          // 8
 }
 
 impl UserQuizStats{
-    pub const MAXIMUM_SPACE: usize = 32 + 8;
+    pub const MAXIMUM_SPACE: usize = 1 + 32 + 8;
 
-    pub fn new(author: Pubkey) -> Self {
+    pub fn new(bump: u8, author: Pubkey) -> Self {
         UserQuizStats {
+            bump,
             author,
             ..Default::default()
         }

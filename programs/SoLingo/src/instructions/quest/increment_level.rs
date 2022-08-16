@@ -13,8 +13,8 @@ pub struct IncrementLevel<'info> {
 
     #[account(
     mut,
-    seeds = [b"user", author.key().to_bytes().as_ref()],
-    bump,
+    seeds = [b"user", user_quiz_stats.author.key().to_bytes().as_ref()],
+    bump = user_quiz_stats.bump,
     )]
     user_quiz_stats: Account<'info, UserQuizStats>,
     system_program: Program<'info, System>,

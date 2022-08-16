@@ -118,7 +118,7 @@ describe("forum", () => {
         await program.methods
             .initializeProgramInfo()
             .accounts({
-                author: programWallet.publicKey,
+                admin: programWallet.publicKey,
                 programInfo: programInfoPDA,
             }).rpc();
 
@@ -204,11 +204,9 @@ describe("forum", () => {
 
     it("should initialize User stats!", async () => {
 
-        const author = await generateFundedKeypair();
-
         author_pda = await getUserStatsPDA(author.publicKey);
 
-        const userStats = await initUserStats(author_pda);
+        const userStats = await initUserStats(author, author_pda);
 
         expect(userStats.author).to.eql(author.publicKey);
         expect(userStats.level).to.eql(0);
@@ -223,13 +221,15 @@ describe("forum", () => {
 
     });
 
-    async function initUserStats(userStatsPDA: PublicKey) {
+    async function initUserStats(author: Keypair, userStatsPDA: PublicKey) {
         await program.methods
             .initializeUserStats()
             .accounts({
-                author: programWallet.publicKey,
+                author: author.publicKey,
                 user: userStatsPDA,
-            }).rpc();
+            })
+            .signers([author])
+            .rpc();
 
         return await program.account.userQuizStats.fetch(userStatsPDA);
     }
