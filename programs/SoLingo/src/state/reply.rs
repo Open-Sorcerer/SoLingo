@@ -5,10 +5,10 @@ use anchor_lang::prelude::*;
 #[account]
 #[derive(Default)]
 pub struct Reply {
+    pub bump: u8,           // 1
     pub author: Pubkey,     // 32
-    description: String,    // 4 + (200 * 4)
-    up_votes: u32,          // 8
-    down_votes: u32,        // 8
+    description: String,    // 4 + (300 * 4)
+    pub up_votes: u32,          // 8
     date_created: i64,      // 16 (UnixTimestamp)
     correct_answer: bool,   // 1
     pub question_num: u32,  // 8
@@ -16,10 +16,11 @@ pub struct Reply {
 }
 
 impl Reply {
-    pub const MAXIMUM_SPACE: usize = 32 + (4 + (200 * 4)) + 8 + 8 + 16 + 1 + 8 + 8;
+    pub const MAXIMUM_SPACE: usize = 32 + (4 + (300 * 4)) + 8 + 8 + 16 + 1 + 8 + 8;
 
-    pub fn new(author: Pubkey, description: String, question_num: u32, date_created: i64) -> Self {
+    pub fn new(bump:u8, author: Pubkey, description: String, question_num: u32, date_created: i64) -> Self {
         Reply {
+            bump,
             author,
             description,
             question_num,
@@ -43,13 +44,5 @@ impl Reply {
 
     pub fn decrement_up_votes(&mut self) {
         self.up_votes -= 1;
-    }
-
-    pub fn increment_down_votes(&mut self) {
-        self.down_votes += 1;
-    }
-
-    pub fn decrement_down_votes(&mut self) {
-        self.down_votes -= 1;
     }
 }

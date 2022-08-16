@@ -16,27 +16,23 @@ pub struct DownVoteReply<'info> {
     seeds = [
     b"reply",
     reply.reply_num().to_be_bytes().as_ref(),
-    question.question_num().to_be_bytes().as_ref()
+    question.question_num.to_be_bytes().as_ref()
     ],
-    bump,
+    bump = reply.bump,
     )]
     reply: Account<'info, Reply>,
 
     #[account(
     mut,
-    seeds = [b"question", question.question_num().to_be_bytes().as_ref()],
-    bump,
+    seeds = [b"question", question.question_num.to_be_bytes().as_ref()],
+    bump = question.bump,
     )]
     question: Account<'info, Question>,
-
-    #[account(mut, seeds = [b"question_program_info"], bump = program_info.bump(), has_one = author)]
-    program_info: Account<'info, QuestionProgramInfo>,
-
-    system_program: Program<'info, System>,
 }
 
 pub fn down_vote_reply(ctx: Context<DownVoteReply>) -> Result<()> {
-    ctx.accounts.reply.increment_down_votes();
-
+    if ctx.accounts.reply.up_votes > 0 {
+        ctx.accounts.reply.decrement_up_votes();
+    }
     Ok(())
 }

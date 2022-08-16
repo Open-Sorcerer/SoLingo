@@ -1,0 +1,319 @@
+{
+  "version": "0.1.0",
+  "name": "so_lingo",
+  "instructions": [
+    {
+      "name": "initializeProgramInfo",
+      "accounts": [
+        {
+          "name": "admin",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "programInfo",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "postQuestion",
+      "accounts": [
+        {
+          "name": "author",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "question",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "programInfo",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "name": "description",
+          "type": "string"
+        },
+        {
+          "name": "tags",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "postReply",
+      "accounts": [
+        {
+          "name": "author",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "reply",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "question",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "programInfo",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "description",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "upvoteQuestion",
+      "accounts": [
+        {
+          "name": "author",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "question",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "downvoteQuestion",
+      "accounts": [
+        {
+          "name": "author",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "question",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "upvoteReply",
+      "accounts": [
+        {
+          "name": "author",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "reply",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "question",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "downVoteReply",
+      "accounts": [
+        {
+          "name": "author",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "reply",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "question",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    }
+  ],
+  "accounts": [
+    {
+      "name": "QuestionProgramInfo",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "author",
+            "type": "publicKey"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "questionsCount",
+            "type": "u32"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Question",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "author",
+            "type": "publicKey"
+          },
+          {
+            "name": "title",
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "type": "string"
+          },
+          {
+            "name": "upVotes",
+            "type": "u32"
+          },
+          {
+            "name": "tags",
+            "type": "string"
+          },
+          {
+            "name": "repliesCount",
+            "type": "u32"
+          },
+          {
+            "name": "dateCreated",
+            "type": "i64"
+          },
+          {
+            "name": "isAnswered",
+            "type": "bool"
+          },
+          {
+            "name": "questionNum",
+            "type": "u32"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Reply",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "author",
+            "type": "publicKey"
+          },
+          {
+            "name": "description",
+            "type": "string"
+          },
+          {
+            "name": "upVotes",
+            "type": "u32"
+          },
+          {
+            "name": "dateCreated",
+            "type": "i64"
+          },
+          {
+            "name": "correctAnswer",
+            "type": "bool"
+          },
+          {
+            "name": "questionNum",
+            "type": "u32"
+          },
+          {
+            "name": "replyNum",
+            "type": "u32"
+          }
+        ]
+      }
+    }
+  ],
+  "types": [
+    {
+      "name": "ReplyErrors",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "DescriptionTooLong"
+          }
+        ]
+      }
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "TagsTooLong",
+      "msg": "The provided tags string should be 50 characters long maximum."
+    },
+    {
+      "code": 6001,
+      "name": "TitleTooLong",
+      "msg": "The provided title string should be 100 characters long maximum."
+    },
+    {
+      "code": 6002,
+      "name": "DescriptionTooLong",
+      "msg": "The provided description string should be 200 characters long maximum."
+    }
+  ],
+  "metadata": {
+    "address": "3eDAYviWGBPe2MugFvjWekFhnwGJc4S82KTt3azLDeRZ"
+  }
+}
