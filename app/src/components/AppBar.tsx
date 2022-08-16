@@ -3,7 +3,6 @@ import Link from "next/link";
 
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { useAutoConnect } from '../contexts/AutoConnectProvider';
-import NetworkSwitcher from './NetworkSwitcher';
 
 export const AppBar: FC = props => {
   const { autoConnect, setAutoConnect } = useAutoConnect();
@@ -85,8 +84,6 @@ export const AppBar: FC = props => {
                     <a>Autoconnect</a>
                     <input type="checkbox" checked={autoConnect} onChange={(e) => setAutoConnect(e.target.checked)} className="toggle" />
                   </label>
-
-                  <NetworkSwitcher />
                 </div>
               </li>
             </ul>

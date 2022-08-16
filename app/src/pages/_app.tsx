@@ -4,15 +4,13 @@ import { FC } from "react";
 import { ContextProvider } from "../contexts/ContextProvider";
 import { AppBar } from "../components/AppBar";
 import { ContentContainer } from "../components/ContentContainer";
-import { Footer } from "../components/Footer";
 import Notifications from "../components/Notification";
-import SplineObj from "components/SplineObj";
 
 require("@solana/wallet-adapter-react-ui/styles.css");
 require("../styles/globals.css");
 
-const App: FC<AppProps> = ({ Component, pageProps }) => {
-  return (
+const App: FC<AppProps> = ({Component, pageProps}) => {
+    return (
     <>
       <Head>
         <title>Solana Scaffold Lite</title>
@@ -22,7 +20,10 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
           <Notifications />
           <AppBar />
           <ContentContainer>
-            <Component {...pageProps} />
+              <div className='z-10'>
+                  {/* @ts-ignore */}
+                  <Component {...pageProps} />
+              </div>
           </ContentContainer>
           {/* <Footer /> */}
         </div>
