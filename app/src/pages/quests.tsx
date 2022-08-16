@@ -5,6 +5,7 @@ import getUserStatsPDA from "../transactions/pda/getUserStatsPDA";
 import getProgram from "../transactions/api/getProgram";
 import getProvider from "../transactions/api/getProvider";
 import {useAnchorWallet} from "@solana/wallet-adapter-react";
+import { Icon } from "@iconify/react";
 
 const Quests: NextPage = () => {
   const wallet = useAnchorWallet();
@@ -32,55 +33,59 @@ const Quests: NextPage = () => {
             </h4>
             <div className="flex gap-5 items-start w-full">
               <Link href="/1">
-                <a className="w-full rounded-lg relative flex justify-center items-center">
+              <a className="w-full bg-indigo-600 rounded-lg relative flex justify-center items-center">
                   <img
                     alt="1"
-                    src="https://source.unsplash.com/random/?one"
-                    className="h-48 w-60 rounded-lg"
+                    src="./texture.png"
+                    className="h-48 w-full rounded-lg"
                     style={{ filter: "brightness(40%)" }}
                   />
-                  <p className="absolute top-1/3 left-1/3 text-2xl font-bold">
-                    Level 1
+                  <p className="absolute flex flex-col items-center justify-evenly">
+                    <div className="text-white text-2xl font-bold ">Level</div>
+                    <Icon className="text-cyan-500 w-16 h-16" icon="bi:1-circle-fill" />
                   </p>
                 </a>
               </Link>
               <Link href="/2">
-                <a className="w-full rounded-lg relative flex justify-center items-center">
+              <a className="w-full bg-indigo-600 rounded-lg relative flex justify-center items-center">
                   <img
-                    alt="1"
-                    src="https://source.unsplash.com/random/?two"
-                    className="h-48 w-60 rounded-lg"
+                    alt="2"
+                    src="./texture.png"
+                    className="h-48 w-full rounded-lg"
                     style={{ filter: "brightness(40%)" }}
                   />
-                  <p className="absolute top-1/3 left-1/3 text-2xl font-bold">
-                    Level 2
+                  <p className="absolute flex flex-col items-center justify-evenly">
+                    <div className="text-white text-2xl font-bold ">Level</div>
+                    <Icon className="text-cyan-500 w-16 h-16" icon="bi:2-circle-fill" />
                   </p>
                 </a>
               </Link>
               <Link href="/3">
-                <a className="w-full rounded-lg relative flex justify-center items-center">
+                <a className="w-full bg-indigo-600 rounded-lg relative flex justify-center items-center">
                   <img
-                    alt="1"
-                    src="https://source.unsplash.com/random/?three"
-                    className="h-48 w-60 rounded-lg"
+                    alt="3"
+                    src="./texture.png"
+                    className="h-48 w-full rounded-lg"
                     style={{ filter: "brightness(40%)" }}
                   />
-                  <p className="absolute top-1/3 left-1/3 text-2xl font-bold">
-                    Level 3
+                  <p className="absolute flex flex-col items-center justify-evenly">
+                    <div className="text-white text-2xl font-bold ">Level</div>
+                    <Icon className="text-cyan-500 w-16 h-16" icon="bi:3-circle-fill" />
                   </p>
                 </a>
               </Link>
-              <a className="w-full rounded-lg relative flex justify-center items-center">
-                <img
-                  alt="1"
-                  src="https://source.unsplash.com/random/?comingsoon"
-                  className="h-48 w-60 rounded-lg"
-                  style={{ filter: "brightness(40%)" }}
-                />
-                <p className="absolute top-1/3 left-1/3 text-2xl font-bold">
-                  Coming Soon...
-                </p>
-              </a>
+              <a className="w-full bg-indigo-600 rounded-lg relative flex justify-center items-center">
+                  <img
+                    alt="retry"
+                    src="./texture.png"
+                    className="h-48 w-full rounded-lg"
+                    style={{ filter: "brightness(40%)" }}
+                  />
+                  <p className="absolute flex flex-col items-center justify-evenly">
+                    <div className="text-white text-2xl font-bold ">Coming Soon</div>
+                    <Icon className="text-cyan-500 w-16 h-16" icon="eos-icons:three-dots-loading" />
+                  </p>
+                </a>
             </div>
           </div>
         </div>

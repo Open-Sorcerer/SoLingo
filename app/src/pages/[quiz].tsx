@@ -77,7 +77,7 @@ const Quests: NextPage = (props) => {
                     <a className="w-full bg-indigo-600 rounded-lg relative flex justify-center items-center">
                       <img
                         alt="retry"
-                        src="https://source.unsplash.com/random/?reset"
+                        src="./texture.png"
                         className="h-48 w-full rounded-lg"
                         style={{ filter: "brightness(40%)" }}
                       />
@@ -102,7 +102,7 @@ const Quests: NextPage = (props) => {
                     >
                       <img
                         alt="upload"
-                        src="https://source.unsplash.com/random/?success"
+                        src="./texture.png"
                         className="h-48 w-full rounded-lg"
                         style={{ filter: "brightness(40%)" }}
                       />
@@ -169,7 +169,7 @@ const Quests: NextPage = (props) => {
                   <div className="flex justify-between w-full mt-4 text-white">
                     <button
                       onClick={handlePrevious}
-                      className="w-[49%] py-3 bg-indigo-600 rounded-lg"
+                      className="w-[49%] py-3 bg-indigo-600 hover:bg-indigo-700 rounded-lg"
                     >
                       Previous
                     </button>
@@ -179,7 +179,7 @@ const Quests: NextPage = (props) => {
                           ? handleSubmitButton
                           : handleNext
                       }
-                      className="w-[49%] py-3 bg-indigo-600 rounded-lg"
+                      className="w-[49%] py-3 bg-indigo-600 hover:bg-indigo-700 rounded-lg"
                     >
                       {currentQuestion + 1 === questions.length
                         ? "Submit"

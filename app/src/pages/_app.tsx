@@ -5,25 +5,26 @@ import { ContextProvider } from "../contexts/ContextProvider";
 import { AppBar } from "../components/AppBar";
 import { ContentContainer } from "../components/ContentContainer";
 import Notifications from "../components/Notification";
+import SplineObj from "components/SplineObj";
 
 require("@solana/wallet-adapter-react-ui/styles.css");
 require("../styles/globals.css");
 
-const App: FC<AppProps> = ({Component, pageProps}) => {
-    return (
+const App: FC<AppProps> = ({ Component, pageProps }) => {
+  return (
     <>
       <Head>
         <title>Solana Scaffold Lite</title>
       </Head>
+      <div className="h-screen">
+        <SplineObj scene={"./scene.splinecode"} />
+      </div>
       <ContextProvider>
         <div className="flex flex-col h-screen w-screen absolute top-0 left-0 z-1000">
           <Notifications />
           <AppBar />
           <ContentContainer>
-              <div className='z-10'>
-                  {/* @ts-ignore */}
-                  <Component {...pageProps} />
-              </div>
+            <Component {...pageProps} />
           </ContentContainer>
           {/* <Footer /> */}
         </div>
