@@ -12,7 +12,7 @@
             "question": "Which of the following is false about Accounts?",
             "answerOptions": [
                 { "answer": "Each account has a unique address" },
-                { "answer": "Accounts size are fixed at creation time, but can be adjusted", "isCorrect": true  },
+                { "answer": "Accounts size are fixed at creation time, and cannot be adjusted", "isCorrect": true  },
                 { "answer": "Accounts are used to store data" },
                 { "answer": "Account data storage is paid with rent" }
             ]

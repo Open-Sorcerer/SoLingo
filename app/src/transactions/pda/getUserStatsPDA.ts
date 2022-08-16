@@ -13,7 +13,7 @@ export default async function getUserStatsPDA(program: Program, author: PublicKe
     const [userStatsPDA, userStatsBump] = await anchor.web3.PublicKey.findProgramAddress(
         [
             encode("user"),
-            author.toBuffer(),
+            author?.toBuffer(),
         ],
         program.programId
     );

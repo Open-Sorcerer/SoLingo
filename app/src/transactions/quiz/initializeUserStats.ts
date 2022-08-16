@@ -1,22 +1,21 @@
 import {Provider} from "@project-serum/anchor";
 import getProgram from "../api/getProgram";
 import {notify} from "../../utils/notifications";
-import {Keypair} from "@solana/web3.js";
+import { PublicKey} from "@solana/web3.js";
 import getUserStatsPDA from "../pda/getUserStatsPDA";
 
-export default async function initializeUserStats(provider: Provider, author: Keypair): Promise<any> {
+export default async function initializeUserStats(provider: Provider, author: PublicKey): Promise<any> {
     const program = getProgram(provider)
 
-    const userStatsPDA = await getUserStatsPDA(program, author.publicKey)
+    const userStatsPDA = await getUserStatsPDA(program, author)
 
     if (provider) {
         await program.methods
             .initializeUserStats()
             .accounts({
-                author: author.publicKey,
+                author: author,
                 user: userStatsPDA,
             })
-            .signers([author])
             .rpc();
 
         console.log(await program.account.userQuizStats.fetch(userStatsPDA));

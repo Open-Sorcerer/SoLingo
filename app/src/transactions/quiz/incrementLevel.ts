@@ -11,7 +11,8 @@ export default async function incrementLevel(provider: Provider, author: PublicK
     const userStatsPDA = await getUserStatsPDA(program, author)
 
     // @ts-ignore
-    const userQuizStats: UserQuizStats = await program.account.quiz.fetch(userStatsPDA)
+    const userQuizStats: UserQuizStats = await program.account.userQuizStats.fetch(userStatsPDA)
+
     console.log(userQuizStats)
 
     if (provider) {

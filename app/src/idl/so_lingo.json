@@ -171,6 +171,48 @@
         }
       ],
       "args": []
+    },
+    {
+      "name": "initializeUserStats",
+      "accounts": [
+        {
+          "name": "author",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "user",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "incrementLevel",
+      "accounts": [
+        {
+          "name": "author",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "userQuizStats",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
     }
   ],
   "accounts": [
@@ -281,6 +323,26 @@
           }
         ]
       }
+    },
+    {
+      "name": "UserQuizStats",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "author",
+            "type": "publicKey"
+          },
+          {
+            "name": "level",
+            "type": "u32"
+          }
+        ]
+      }
     }
   ],
   "types": [
@@ -314,6 +376,6 @@
     }
   ],
   "metadata": {
-    "address": "3eDAYviWGBPe2MugFvjWekFhnwGJc4S82KTt3azLDeRZ"
+    "address": "4bbtjhfydBhiuhqgHi1td5xHNhS2RUJXYWkgix4H6L5r"
   }
 }
