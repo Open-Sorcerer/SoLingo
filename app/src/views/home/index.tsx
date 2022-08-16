@@ -11,7 +11,6 @@ import pkg from '../../../package.json';
 
 // Store
 import useUserSOLBalanceStore from '../../stores/useUserSOLBalanceStore';
-import SplineObj from "../../components/SplineObj";
 
 export const HomeView: FC = ({ }) => {
   const wallet = useWallet();
@@ -30,7 +29,6 @@ export const HomeView: FC = ({ }) => {
   return (
 
     <div className="h-screen">
-        <SplineObj scene={"./scene.splinecode"} />
     </div>
   );
 };
