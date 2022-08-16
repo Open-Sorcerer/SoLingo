@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import { Icon } from "@iconify/react";
+import {ReplyModel} from "../models/ReplyModel";
 
-const ReplyThread = (props: { reply: any }) => {
+const ReplyThread = (props: { reply: ReplyModel }) => {
   const { reply } = props;
   const [isInputShown, setIsInputShown] = useState(false);
   const [isUpVoted, setIsUpVoted] = useState(false);
   const [isDownVoted, setIsDownVoted] = useState(false);
   return (
     <div className="w-full flex flex-col justify-center items-start px-4 py-3 border border-gray-300">
-      {reply.msg}
+      {reply.description}
       <div className="w-full flex flex-row justify-start items-start">
         <div
           tabIndex={0}
@@ -68,15 +69,6 @@ const ReplyThread = (props: { reply: any }) => {
           />
         </div>
       </form>
-      {reply.replies ? (
-        <div className="w-full flex flex-col justify-center items-start border border-gray-300 pl-24">
-          {reply.replies.map((elem: any, i: React.Key) => (
-            <ReplyThread key={i} reply={elem} />
-          ))}
-        </div>
-      ) : (
-        <></>
-      )}
     </div>
   );
 };
