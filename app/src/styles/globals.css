@@ -77,3 +77,7 @@ input[type="radio"] {
       outline-offset: -0.2rem;
   }
 }
+
+textarea:focus, input:focus{
+  outline: none;
+}

@@ -129,7 +129,7 @@ export const ForumView = ({}) => {
               setIsInputShown(!isInputShown);
             }}
           >
-            <div tabIndex={0} className="btn btn-square btn-ghost text-right">
+            <div tabIndex={0} className="btn btn-ghost text-right flex flex-row gap-2">
               {isInputShown ? (
                 <Icon
                   className="text-cyan-500 w-6 h-6"
@@ -141,14 +141,14 @@ export const ForumView = ({}) => {
                   icon="fluent:comment-add-20-regular"
                 />
               )}
-            </div>
-            <p className="text-cyan-500 text-lg">
+            <p className="text-cyan-500 text-md">
               {isInputShown ? "Close" : "Ask a new question"}
             </p>
+            </div>
           </div>
           <form
             className={
-              "w-full flex flex-col justify-center items-start border-white/20 rounded-xl bg-black/40 " +
+              "flex flex-col gap-1 items-center w-full py-4 p-10 pl-5 m-2 ml-0 space-x-2 border-2 cursor-pointer border-white/20 rounded-xl bg-black/40 " +
               (isInputShown ? "flex" : "hidden")
             }
           >
@@ -156,26 +156,26 @@ export const ForumView = ({}) => {
               id="title"
               placeholder="Title"
               className={
-                "w-full flex flex-col justify-center items-start bg-transparent border border-white/20 rounded-t-lg px-5 py-1"
+                "w-full flex flex-col justify-center items-start bg-transparent py-2 px-5 text-xl font-semibold"
               }
             />
             <textarea
               id="description"
               placeholder="Description"
               className={
-                "w-full flex flex-col justify-center items-start bg-transparent border border-white/20 py-2 px-5"
+                "w-full flex flex-col justify-center items-start bg-transparent py-2 px-4 text-lg"
               }
+              rows={6}
             />
-            <div className="w-full flex flex-row justify-between items-center bg-transparent border border-white/20 rounded-b-lg">
+            <div className="w-full flex flex-row justify-between items-center bg-transparent">
               <input
                 title="upload"
                 type="file"
                 className="w-1/2 rounded-bl-lg text-cyan-500 text-md font-semibold"
               />
-              <input
+              <button
                 type="submit"
-                value="Post Question"
-                className="w-1/2 bg-indigo-700 text-white hover:bg-indigo-800 font-normal text-md rounded-br-lg"
+                className="w-1/2 bg-indigo-700 text-white hover:bg-indigo-800 font-normal text-md rounded-lg py-1"
                 onClick={async () => {
                   sampleQuestion.title = (
                     document.getElementById("title") as HTMLInputElement
@@ -185,7 +185,9 @@ export const ForumView = ({}) => {
                   ).value;
                   await postQuestion(provider, sampleQuestion);
                 }}
-              />
+              >
+                Post Question
+              </button>
             </div>
           </form>
         </div>
