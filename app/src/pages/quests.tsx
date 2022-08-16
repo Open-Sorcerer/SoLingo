@@ -21,7 +21,6 @@ const Quests: NextPage = () => {
     let max_level= 1;
     let [ fetch, setFetch ] = useState(false);
 
-
     const fetch_level = async () => {
         const userStatsPDA = await getUserStatsPDA(program, wallet.publicKey)
         // await incrementLevel(provider, wallet.publicKey)

@@ -106,15 +106,6 @@ export const ForumView = ({}) => {
     description:
       "I am new to Solana and I would like to get started with it. What is the best way to get started with Solana?",
     tags: "solana,anchor,newbie",
-    // replies: [
-    //   "I would recommend the following:",
-    //   "Lorem ipsum Dolor Sit Solana"
-    //   // {
-    //   //   description: "The billboard of the billboard is under the hood. The billboard should be a famous mauris.",
-    //   //   upvotes: 0,
-    //   //   downvotes: 0,
-    //   // },
-    // ],
   };
 
   return (
@@ -130,7 +121,10 @@ export const ForumView = ({}) => {
               setIsInputShown(!isInputShown);
             }}
           >
-            <div tabIndex={0} className="btn btn-ghost text-right flex flex-row gap-2">
+            <div
+              tabIndex={0}
+              className="btn btn-ghost text-right flex flex-row gap-2"
+            >
               {isInputShown ? (
                 <Icon
                   className="text-cyan-500 w-6 h-6"
@@ -142,9 +136,9 @@ export const ForumView = ({}) => {
                   icon="fluent:comment-add-20-regular"
                 />
               )}
-            <p className="text-cyan-500 text-md">
-              {isInputShown ? "Close" : "Ask a new question"}
-            </p>
+              <p className="text-cyan-500 text-md">
+                {isInputShown ? "Close" : "Ask a new question"}
+              </p>
             </div>
           </div>
           <form
@@ -168,16 +162,11 @@ export const ForumView = ({}) => {
               }
               rows={6}
             />
-            <Tags/>
+            <Tags />
             <div className="w-full flex flex-row justify-between items-center bg-transparent">
-              <input
-                title="upload"
-                type="file"
-                className="w-1/2 rounded-bl-lg text-cyan-500 text-md font-semibold"
-              />
               <button
                 type="submit"
-                className="w-1/2 bg-indigo-700 text-white hover:bg-indigo-800 font-normal text-md rounded-lg py-1"
+                className="w-full bg-indigo-700 text-white hover:bg-indigo-800 font-normal text-md rounded-lg py-1 ml-5"
                 onClick={async () => {
                   sampleQuestion.title = (
                     document.getElementById("title") as HTMLInputElement
@@ -194,16 +183,23 @@ export const ForumView = ({}) => {
           </form>
         </div>
         <div className="flex items-center w-full py-4 pl-5 m-2 ml-0 space-x-2 border-2 cursor-pointer border-white/20 rounded-xl bg-black/40">
-          {questions.length > 0 &&
+          {questions.length > 0 ? (
             questions.map((item, index) => (
-              <div key={index}>
+              <div className="w-full" key={index}>
                 <Question
                   // @ts-ignore
                   provider={provider}
                   questionData={item}
                 />
               </div>
-            ))}
+            ))
+          ) : (
+            <div className="animate-pulse">
+              <div className="h-40 w-full">
+                <h1 className="text-lg">Loading...</h1>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

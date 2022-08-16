@@ -9,7 +9,7 @@ const Home: NextPage = (props) => {
         <title>SoLingo</title>
         <meta
           name="description"
-          content="Solana Scaffold"
+          content="Solingo"
         />
       </Head>
       <HomeView />
