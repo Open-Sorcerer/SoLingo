@@ -1,187 +1,143 @@
 [{
     "1": [{
-            "question": "What type of framework is Next.js?",
+            "question": "What are the essential building blocks for developing on Solana?",
             "answerOptions": [
-                { "answer": "Frontend" },
-                { "answer": "Backend" },
-                { "answer": "FullStack", "isCorrect": true },
+                { "answer": "Sol" },
+                { "answer": "PDA" },
+                { "answer": "Account", "isCorrect": true },
                 { "answer": "None of the above" }
             ]
         },
         {
-            "question": "When was Next.js released?",
+            "question": "Which of the following is false about Accounts?",
             "answerOptions": [
-                { "answer": "20 September 2019" },
-                { "answer": "14 January 2017" },
-                { "answer": "25 October 2016", "isCorrect": true },
-                { "answer": "28 March 2018" }
+                { "answer": "Each account has a unique address" },
+                { "answer": "Accounts size are fixed at creation time, but can be adjusted", "isCorrect": true  },
+                { "answer": "Accounts are used to store data" },
+                { "answer": "Account data storage is paid with rent" }
             ]
         },
         {
-            "question": "When was Next.js released?",
+            "question": "What's the full form of PDA?",
             "answerOptions": [
-                { "answer": "20 September 2019" },
-                { "answer": "14 January 2017" },
-                { "answer": "25 October 2016", "isCorrect": true },
-                { "answer": "28 March 2018" }
-            ]
-        },
-        {
-            "question": "Which CSS Framework are we using?",
-            "answerOptions": [
-                { "answer": "Bootstrap" },
-                { "answer": "TailwindCSS", "isCorrect": true },
-                { "answer": "Chakra UI" },
-                { "answer": "Bulma CSS" }
-            ]
-        },
-        {
-            "question": "Which class in Tailwind is used to set flex direction of column?",
-            "answerOptions": [
-                { "answer": "col" },
-                { "answer": "col-flex" },
-                { "answer": "flex-col", "isCorrect": true },
+                { "answer": "Program Derived App" },
+                { "answer": "Program Detected Address" },
+                { "answer": "Program Derived Address", "isCorrect": true },
                 { "answer": "None of the above" }
             ]
         },
         {
-            "question": "What type of framework is Next.js?",
+            "question": "Which fields can be stored by an account?",
             "answerOptions": [
-                { "answer": "Frontend" },
-                { "answer": "Backend" },
-                { "answer": "FullStack", "isCorrect": true },
-                { "answer": "None of the above" }
+                { "answer": "lamports" },
+                { "answer": "owner" },
+                { "answer": "data" },
+                { "answer": "All of the above", "isCorrect": true }
             ]
         },
         {
-            "question": "When was Next.js released?",
+            "question": "An account will be exempt from paying rent, if ...",
             "answerOptions": [
-                { "answer": "20 September 2019" },
-                { "answer": "14 January 2017" },
-                { "answer": "25 October 2016", "isCorrect": true },
-                { "answer": "28 March 2018" }
-            ]
-        },
-        {
-            "question": "Which CSS Framework are we using?",
-            "answerOptions": [
-                { "answer": "Bootstrap" },
-                { "answer": "TailwindCSS", "isCorrect": true },
-                { "answer": "Chakra UI" },
-                { "answer": "Bulma CSS" }
-            ]
-        },
-        {
-            "question": "Which class in Tailwind is used to set flex direction of column?",
-            "answerOptions": [
-                { "answer": "col" },
-                { "answer": "col-flex" },
-                { "answer": "flex-col", "isCorrect": true },
-                { "answer": "None of the above" }
-            ]
-        },
-        {
-            "question": "What type of framework is Next.js?",
-            "answerOptions": [
-                { "answer": "Frontend" },
-                { "answer": "Backend" },
-                { "answer": "FullStack", "isCorrect": true },
-                { "answer": "None of the above" }
+                { "answer": "they maintain a minimum balance equivalent to 2 years of rent", "isCorrect": true  },
+                { "answer": "they maintain a minimum balance equivalent to 3 years of rent" },
+                { "answer": "Paid 3 times the rent amount"},
+                { "answer": "Paid 2 times the rent amount" }
             ]
         }
     ]
 }, {
     "1": [{
-            "question": "What type of framework is Next.js2?",
+            "question": "What are Smart Contracts known in Solana?",
             "answerOptions": [
-                { "answer": "Frontend" },
-                { "answer": "Backend" },
-                { "answer": "FullStack", "isCorrect": true },
-                { "answer": "None of the above" }
+                { "answer": "Account" },
+                { "answer": "PDA" },
+                { "answer": "Program", "isCorrect": true },
+                { "answer": "Instructions" }
             ]
         },
         {
-            "question": "When was Next.js released?",
+            "question": "What is/are the parameters of an instruction",
             "answerOptions": [
-                { "answer": "20 September 2019" },
-                { "answer": "14 January 2017" },
-                { "answer": "25 October 2016", "isCorrect": true },
-                { "answer": "28 March 2018" }
+                { "answer": "instruction_data" },
+                { "answer": "program_id" },
+                { "answer": "accounts" },
+                { "answer": "all of the above", "isCorrect": true }
             ]
         },
         {
-            "question": "When was Next.js released?",
+            "question": "Which one of the following is/are Native Program?",
             "answerOptions": [
-                { "answer": "20 September 2019" },
-                { "answer": "14 January 2017" },
-                { "answer": "25 October 2016", "isCorrect": true },
-                { "answer": "28 March 2018" }
+                { "answer": "Associated Token Account Program" },
+                { "answer": "System Program", "isCorrect": true },
+                { "answer": "Solana Program Library" },
+                { "answer": "All of the above" }
             ]
         },
         {
-            "question": "Which CSS Framework are we using?",
+            "question": "What is/are the functions of Solana Program Library?",
             "answerOptions": [
-                { "answer": "Bootstrap" },
-                { "answer": "TailwindCSS", "isCorrect": true },
-                { "answer": "Chakra UI" },
-                { "answer": "Bulma CSS" }
+                { "answer": "Creating, swapping, and lending tokens", "isCorrect": true },
+                { "answer": "Transferring SOL between two parties" },
+                { "answer": "Operate validators" },
+                { "answer": "All of the above" }
             ]
         },
         {
-            "question": "Which class in Tailwind is used to set flex direction of column?",
+            "question": "In which language/s, a developer can write Programs?",
             "answerOptions": [
-                { "answer": "col" },
-                { "answer": "col-flex" },
-                { "answer": "flex-col", "isCorrect": true },
-                { "answer": "None of the above" }
-            ]
-        },
-        {
-            "question": "What type of framework is Next.js?",
-            "answerOptions": [
-                { "answer": "Frontend" },
-                { "answer": "Backend" },
-                { "answer": "FullStack", "isCorrect": true },
-                { "answer": "None of the above" }
-            ]
-        },
-        {
-            "question": "When was Next.js released?",
-            "answerOptions": [
-                { "answer": "20 September 2019" },
-                { "answer": "14 January 2017" },
-                { "answer": "25 October 2016", "isCorrect": true },
-                { "answer": "28 March 2018" }
-            ]
-        },
-        {
-            "question": "Which CSS Framework are we using?",
-            "answerOptions": [
-                { "answer": "Bootstrap" },
-                { "answer": "TailwindCSS", "isCorrect": true },
-                { "answer": "Chakra UI" },
-                { "answer": "Bulma CSS" }
-            ]
-        },
-        {
-            "question": "Which class in Tailwind is used to set flex direction of column?",
-            "answerOptions": [
-                { "answer": "col" },
-                { "answer": "col-flex" },
-                { "answer": "flex-col", "isCorrect": true },
-                { "answer": "None of the above" }
-            ]
-        },
-        {
-            "question": "What type of framework is Next.js?",
-            "answerOptions": [
-                { "answer": "Frontend" },
-                { "answer": "Backend" },
-                { "answer": "FullStack", "isCorrect": true },
+                { "answer": "Rust" },
+                { "answer": "C++" },
+                { "answer": "Both", "isCorrect": true },
                 { "answer": "None of the above" }
             ]
         }
     ]
 }, {
-    "1": []
+    "1": [
+        {
+            "question": "Which of the following is false about Transactions?",
+            "answerOptions": [
+                { "answer": "A single transaction cannot include multiple instructions.", "isCorrect": true },
+                { "answer": "When a transaction is submitted, the Solana Runtime will process its instructions in order and atomically." },
+                { "answer": "Clients can invoke programs by submitting a transaction to a cluster." },
+                { "answer": "If any part of an instruction fails, the entire transaction will fail."}
+            ]
+        },
+        {
+            "question": "What among the following is in a Transaction",
+            "answerOptions": [
+                { "answer": "Array of all acounts" },
+                { "answer": "Recent Blockhash" },
+                { "answer": "One or more signature" },
+                { "answer": "All of the above", "isCorrect": true }
+            ]
+        },
+        {
+            "question": "Which of the following has to specify a list of accounts to read/write from?",
+            "answerOptions": [
+                { "answer": "Instructions" },
+                { "answer": "Transactions" },
+                { "answer": "Both", "isCorrect": true },
+                { "answer": "None of the above" }
+            ]
+        },
+        {
+            "question": "Which of the following is false about Transaction fees?",
+            "answerOptions": [
+                { "answer": "Transaction fees are determined only by the number of signatures required" },
+                { "answer": "Transaction fees are used to store data on-chain", "isCorrect": true },
+                { "answer": "Writable signer account that is serialized first will be the fee payer" },
+                { "answer": "50% of all transaction fees are collected by the validator that produces the block, while the remaining 50% are burned" }
+            ]
+        },
+        {
+            "question": "Transactions are limited to how many bytes?",
+            "answerOptions": [
+                { "answer": "80 Bytes" },
+                { "answer": "1024 Bytes" },
+                { "answer": "1232 Bytes", "isCorrect": true },
+                { "answer": "No limit" }
+            ]
+        }
+    ]
 }]

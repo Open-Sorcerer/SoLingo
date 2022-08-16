@@ -12,10 +12,10 @@ const Quests: NextPage = (props) => {
   if (Array.isArray(quiz)) {
     quiz = quiz.join("");
   }
-  console.log(quiz);
+
   const no = parseInt(quiz) - 1;
-  console.log(no);
-  let questions = quizJson[1][1];
+  console.log(no)
+  let questions = quizJson[no][1]
 
   //These are used to maintain question and score state.
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -38,7 +38,6 @@ const Quests: NextPage = (props) => {
       (selectedOptions[currentQuestion] = { answerByUser: answer }),
     ]);
     setSelectedOptions([...selectedOptions]);
-    console.log(selectedOptions);
   };
 
   const handleSubmitButton = () => {
@@ -94,7 +93,7 @@ const Quests: NextPage = (props) => {
                     </a>
                   </Link>
                   {/* If the score is less then 8 then you can't upload the result */}
-                  {score < 8 ? (
+                  {score < 4 ? (
                     <></>
                   ) : (
                     <button
@@ -119,7 +118,7 @@ const Quests: NextPage = (props) => {
                     </button>
                   )}
                 </div>
-                {score < 8 ? (
+                {score < 4 ? (
                   <>
                     <h1 className="text-3xl font-semibold text-center text-white">
                       You failed to clear this round. Better luck next time!
