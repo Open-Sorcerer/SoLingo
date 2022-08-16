@@ -12,10 +12,9 @@ const Quests: NextPage = (props) => {
   if (Array.isArray(quiz)) {
     quiz = quiz.join('');
   }
-  console.log(quiz)
   const no = parseInt(quiz) - 1;
   console.log(no)
-  let questions = quizJson[1][1]
+  let questions = quizJson[no][1]
   
   //These are used to maintain question and score state.
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -38,7 +37,6 @@ const Quests: NextPage = (props) => {
       (selectedOptions[currentQuestion] = { answerByUser: answer }),
     ]);
     setSelectedOptions([...selectedOptions]);
-    console.log(selectedOptions);
   };
 
   const handleSubmitButton = () => {
@@ -73,7 +71,7 @@ const Quests: NextPage = (props) => {
                 You scored {score} out of {questions.length}
               </h1>
               {/* If the score is less then 8 then you can't upload the result */}
-              { (score < 8) ? (
+              { (score < 4) ? (
                   <h1 className="text-3xl font-semibold text-center text-white">
                     You didn't pass this round.
                   </h1>
@@ -84,7 +82,7 @@ const Quests: NextPage = (props) => {
                   </button>
                 )
               }
-              <Link href="/quest">
+              <Link href="/quests">
                   <a className="w-[49%] py-3 bg-indigo-600 rounded-lg">Retry</a>
               </Link>
             </>
