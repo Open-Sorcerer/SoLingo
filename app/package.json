@@ -13,6 +13,7 @@
   "dependencies": {
     "@heroicons/react": "^1.0.5",
     "@iconify/react": "^3.2.2",
+    "@project-serum/anchor": "^0.24.2",
     "@solana/wallet-adapter-base": "^0.9.3",
     "@solana/wallet-adapter-react": "^0.15.3",
     "@solana/wallet-adapter-react-ui": "^0.9.5",
@@ -30,12 +31,14 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-icons": "^4.4.0",
-    "zustand": "^3.6.9",
-    "@project-serum/anchor": "^0.24.2"
+    "react-tag-autocomplete": "^6.3.0",
+    "rsuite": "^5.16.5",
+    "zustand": "^3.6.9"
   },
   "devDependencies": {
     "@types/node": "17.0.10",
     "@types/react": "17.0.38",
+    "@types/react-tag-autocomplete": "^6.1.1",
     "autoprefixer": "^10.4.2",
     "bs58": "^5.0.0",
     "eslint": "8.7.0",

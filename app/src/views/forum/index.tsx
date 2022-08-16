@@ -9,6 +9,7 @@ import getQuestions from "../../transactions/question/getQuestions";
 import getProgram from "../../transactions/api/getProgram";
 import { getProgramInfoPDA } from "../../transactions";
 import { Icon } from "@iconify/react";
+import Tags from "components/Tags";
 
 export const ForumView = ({}) => {
   const [questions, setQuestions] = useState<QuestionModel[]>([]);
@@ -167,6 +168,7 @@ export const ForumView = ({}) => {
               }
               rows={6}
             />
+            <Tags/>
             <div className="w-full flex flex-row justify-between items-center bg-transparent">
               <input
                 title="upload"
