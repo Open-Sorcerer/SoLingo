@@ -24,6 +24,9 @@ pub struct InitializeUserStats<'info> {
 
 pub fn initialize_user_stats(ctx: Context<InitializeUserStats>) -> Result<()> {
     ctx.accounts.user.set_inner(UserQuizStats::new(
+        *ctx.bumps
+            .get("user")
+            .expect("We should've gotten the grant's canonical bump"),
         ctx.accounts.author.key()
     ));
 
