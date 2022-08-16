@@ -10,15 +10,17 @@ import {useEffect, useState} from "react";
 import incrementLevel from "../transactions/quiz/incrementLevel";
 import initializeUserStats from "../transactions/quiz/initializeUserStats";
 import {UserQuizStats} from "../models";
+import {Levels} from "../components/Levels"
 
 const Quests: NextPage = () => {
     const wallet = useWallet();
     const provider = getProvider(wallet)
     const program = getProgram(provider);
-    const [level, setLevel] = useState(1);
-    const [level_array, setLevelArray] = useState([]);
-    const [dis_level, setDisLevel] = useState([]);
-    const [fetchLevel, setFetchLevel] = useState(false);
+    const level_array: number[] = [1, 2, 3];
+    // let [ fetchLevel, setFetchLevel ]  = useState(false);
+    let max_level= 1;
+    let [ fetch, setFetch ] = useState(false);
+
 
     const fetch_level = async () => {
         const userStatsPDA = await getUserStatsPDA(program, wallet.publicKey)
@@ -26,30 +28,24 @@ const Quests: NextPage = () => {
         try {
             // @ts-ignore
             const level_no: UserQuizStats = await program.account.userQuizStats.fetch(userStatsPDA)
-            console.log(level_no.level);
-            setLevel(level_no.level)
-            if(!fetchLevel){
-                for (let i = 1; i <= level; i++) {
-                    level_array.push(i);
-                    setLevelArray(level_array);
-                    console.log(level_array);
-                }
-                for (let j = level + 1; j <= 3; j++) {
-                    dis_level.push(j);
-                    setDisLevel(dis_level);
-                    console.log(dis_level);
-                }
-                setFetchLevel(true)
-            }
+            // setFetch(true);
+            // if (max_level == 0) {
+            //     // max_level = level_no.level;
+            //     setFetch([level_no.level, true])
+            // }
+            max_level = level_no.level
+            setFetch(true)
+
+            // setFetchLevel(true)
+            // console.log(max_level);
+
         } catch (e) {
             await initializeUserStats(provider, wallet.publicKey)
         }
-
     }
 
-    useEffect(() => {
-        fetch_level().then();
-    }, []);
+
+
 
     // @ts-ignore
     return (
@@ -72,65 +68,50 @@ const Quests: NextPage = () => {
                         <br/>
                         <br/>
                         {
-                            fetchLevel ? (<div className="flex gap-5 items-start w-full">
+                            (fetch) ? (<div className="flex gap-5 items-start w-full">
                                     {level_array.map((level, index) => (
                                             <div key={index}>
-                                                <Link href={`/${level}`}>
-                                                    <a className="w-full bg-indigo-600 rounded-lg relative flex justify-center items-center">
-                                                        <img
-                                                            alt="1"
-                                                            src="./texture.png"
-                                                            className="h-48 w-full rounded-lg"
-                                                            style={{filter: "brightness(50%)"}}
-                                                        />
-                                                        <p className="absolute flex flex-col items-center justify-evenly">
-                                                            <div
-                                                                className="text-white text-2xl font-bold ">Level {level}</div>
-                                                        </p>
-                                                    </a>
-                                                </Link>
-                                            </div>
-                                        )
-                                    )}
-                                    {dis_level.map((level, index) => (
-                                            <div key={index}>
-                                                <button
-                                                    className="w-full bg-black-600 rounded-lg relative flex justify-center items-center">
-                                                    <img
-                                                        alt="1"
-                                                        src="./texture.png"
-                                                        className="h-48 w-full rounded-lg"
-                                                        style={{filter: "brightness(20%)"}}
-                                                    />
-                                                    <p className="absolute flex flex-col items-center justify-evenly">
-                                                        <div className="text-white text-2xl font-bold ">Level {level}</div>
-                                                    </p>
-                                                </button>
+                                                <Levels
+                                                    level={level}
+                                                    max_level={max_level}
+                                                />
                                             </div>
                                         )
                                     )}
                                     <div>
-                                    <button
-                                        className="w-full bg-indigo-600 rounded-lg relative flex justify-center items-center">
-                                        <img
-                                            alt="retry"
-                                            src="./texture.png"
-                                            className="h-48 w-full rounded-lg"
-                                            style={{filter: "brightness(20%)"}}
-                                        />
-                                        <p className="absolute flex flex-col items-center justify-evenly">
-                                            <div className="text-white text-2xl font-bold ">Coming Soon</div>
-                                            <Icon className="text-cyan-500 w-16 h-16"
-                                                  icon="eos-icons:three-dots-loading"/>
-                                        </p>
-                                    </button>
+                                        <button
+                                            className="w-full bg-indigo-600 rounded-lg relative flex justify-center items-center">
+                                            <img
+                                                alt="retry"
+                                                src="./texture.png"
+                                                className="h-48 w-full rounded-lg"
+                                                style={{filter: "brightness(20%)"}}
+                                            />
+                                            <p className="absolute flex flex-col items-center justify-evenly">
+                                                <div className="text-white text-2xl font-bold ">Coming Soon</div>
+                                                <Icon className="text-cyan-500 w-16 h-16"
+                                                      icon="eos-icons:three-dots-loading"/>
+                                            </p>
+                                        </button>
                                     </div>
                                 </div>
 
                             ) : (
-                                <h4 className="mt-5 text-xl text-white/60 footer-center">
-                                    Please wait until your progress loads...
-                                </h4>
+                                <button
+                                    className="w-full bg-indigo-600 rounded-lg relative flex justify-center items-center"
+                                onClick={fetch_level}>
+                                    <img
+                                        alt="retry"
+                                        src="./texture.png"
+                                        className="h-48 w-full rounded-lg"
+                                        style={{filter: "brightness(20%)"}}
+                                    />
+                                    <p className="absolute flex flex-col items-center justify-evenly">
+                                        <div className="text-white text-2xl font-bold ">Load Progress</div>
+                                        <Icon className="text-cyan-500 w-16 h-16"
+                                              icon="eos-icons:three-dots-loading"/>
+                                    </p>
+                                </button>
                             )
                         }
 

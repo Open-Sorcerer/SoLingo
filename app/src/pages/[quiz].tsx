@@ -51,7 +51,7 @@ const Quests: NextPage = (props) => {
         }
     }
     const increment_level = async () => {
-        await incrementLevel(provider, wallet.publicKey)
+        // await incrementLevel(provider, wallet.publicKey)
         setUpload(true)
     }
 
