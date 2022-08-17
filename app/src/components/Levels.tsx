@@ -14,21 +14,16 @@ import {Provider} from "@project-serum/anchor";
 
 type LevelsProps = {
     level: number
-    max_level: number
+    status: boolean
 };
 
-export const Levels = ({ level, max_level }: LevelsProps)  => {
-    const [state, setState] = useState(false)
-
-    if( level <= max_level){
-        setState(true)
-    }
+export const Levels = ({ level, status }: LevelsProps)  => {
 
     // @ts-ignore
     return (
         <div>
         {
-            state ? (
+            (status) ? (
                 <Link href={`/${level}`}>
                     <a className="w-full bg-indigo-600 rounded-lg relative flex justify-center items-center">
                         <img
